@@ -5,6 +5,9 @@ import * as THREE from "three";
 function ThreeElement() {
   const el = useRef<THREE.Mesh>(null);
 
+  console.log("렌더링안하니?");
+
+  // 60 Frame 동안 렌더링되는 값을 확인할 수 있음
   useFrame(() => {
     if (el.current) {
       el.current.rotation.x += 0.01;
@@ -24,7 +27,7 @@ function ThreeElement() {
         ]}
       >
         <boxGeometry />
-        <meshStandardMaterial color="red" />
+        <meshStandardMaterial color="blue" />
       </mesh>
     </>
   );
