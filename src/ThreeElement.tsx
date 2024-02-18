@@ -1,36 +1,64 @@
-import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
 import * as THREE from "three";
+import { useRef } from "react";
 
-function ThreeElement() {
-  const el = useRef<THREE.Mesh>(null);
-
-  console.log("렌더링안하니?");
-
-  // 60 Frame 동안 렌더링되는 값을 확인할 수 있음
-  useFrame(() => {
-    if (el.current) {
-      el.current.rotation.x += 0.01;
-    }
-    // console.log(el.current);
-  });
+export default function ThreeElement() {
+  const boxRef = useRef<THREE.Mesh>(null);
+  const groupRef = useRef<THREE.Group>(null);
 
   return (
     <>
       <directionalLight position={[5, 5, 5]} />
-      <mesh
-        ref={el}
+      <group
+        ref={groupRef}
+        position={[0, 0, 0]}
         rotation={[
+          THREE.MathUtils.degToRad(0),
           THREE.MathUtils.degToRad(45),
-          THREE.MathUtils.degToRad(45),
-          0,
+          THREE.MathUtils.degToRad(0),
         ]}
       >
-        <boxGeometry />
-        <meshStandardMaterial color="blue" />
-      </mesh>
+        <axesHelper args={[5]} />
+        <mesh
+          ref={boxRef}
+          position={[0, 0, 0]}
+          scale={[1, 1, 1]}
+          rotation={[
+            THREE.MathUtils.degToRad(0),
+            THREE.MathUtils.degToRad(0),
+            THREE.MathUtils.degToRad(0),
+          ]}
+        >
+          <boxGeometry />
+          <meshStandardMaterial color="red" />
+        </mesh>
+        <mesh
+          ref={boxRef}
+          position={[0, 2, 0]}
+          scale={[1, 1, 1]}
+          rotation={[
+            THREE.MathUtils.degToRad(0),
+            THREE.MathUtils.degToRad(0),
+            THREE.MathUtils.degToRad(0),
+          ]}
+        >
+          <boxGeometry />
+          <meshStandardMaterial color="green" />
+        </mesh>
+        <mesh
+          ref={boxRef}
+          position={[2, 0, 0]}
+          scale={[1, 1, 1]}
+          rotation={[
+            THREE.MathUtils.degToRad(0),
+            THREE.MathUtils.degToRad(45),
+            THREE.MathUtils.degToRad(45),
+          ]}
+        >
+          <axesHelper args={[3]} />
+          <boxGeometry />
+          <meshStandardMaterial color="blue" />
+        </mesh>
+      </group>
     </>
   );
 }
-
-export default ThreeElement;
