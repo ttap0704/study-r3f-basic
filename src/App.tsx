@@ -2,7 +2,7 @@ import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { useControls } from "leva";
-import ThreeElementCH5 from "./ThreeElementCH5";
+import ThreeElementCH6 from "./ThreeElementCH6";
 
 function App() {
   const color = useControls({
@@ -17,10 +17,10 @@ function App() {
     <>
       <Canvas
         camera={{
-          fov: 120,
+          fov: 75,
           near: 1,
-          far: 1000,
-          position: [5, 3, 3],
+          far: 100,
+          position: [5, 5, 5],
         }}
       >
         <color attach="background" args={[color.value]} />
@@ -30,7 +30,7 @@ function App() {
         <axesHelper args={[5]} />
         {/* 물체 바닥을 바둑판으로 안내해주는 Node */}
         <gridHelper args={[10, grid.segment]} />
-        <ThreeElementCH5 />
+        <ThreeElementCH6 />
       </Canvas>
     </>
   );
